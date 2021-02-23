@@ -116,6 +116,6 @@ plt.show()
 #lo=plt.scatter(kspace_arr,freq_arr, s=70, facecolors='none', edgecolors='r')
 #plt.plot(k, omegap, 'r', label='Theory: LHCP light')
 #plt.plot(k, omegam, 'g', label='Theory: RHCP light')
-#plt.legend([lo],['Expt: LHCP light'])
+#plt.legend([lo],['Meep: LHCP light'])
 #plt.show()
 
