@@ -1,4 +1,4 @@
-#straight waveguide example
+#pixel
 
 import meep as mp
 import numpy as np
