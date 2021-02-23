@@ -1,0 +1,53 @@
+RPATH_FLAGS="-Wl,-rpath,/usr/local/lib:/usr/local/lib/openmpi"
+MY_LDFLAGS="-L/usr/local/lib -L/usr/local/lib/openmpi ${RPATH_FLAGS}"
+MY_CPPFLAGS="-I/usr/local/include -I/usr/local/include/openmpi"
+
+Install libctl after nlopt. Install all binary packages, hdf5, libGDSII, then harminv, then h5utils, nlopt, libctl, mpb, then meep - according to the build from source instructions except for Nlopt. 
+
+Build NLOpt:
+
+pip3 install nlopt
+
+(------NLOpt Python										
+(------PyPI version Build
+
+(------This project builds Python wheels for the NLOpt library. NLOpt contains various routines ( for non-linear optimization.
+
+(------Versions supported
+(------The project supports Python versions 3.6+ and above for Windows, MacOS, and Linux.
+
+Build MPB:
+
+sh autogen.sh --enable-shared CC=mpicc LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}" --with-hermitian-eps
+
+
+sh autogen.sh --enable-shared --with-libctl --with-blas=/usr/local/lib --with-lapack=/usr/local/lib CC=mpicc LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}" --with-hermitian-eps
+
+sh autogen.sh --enable-shared --without-libctl --with-blas=/usr/local/lib --with-lapack=/usr/local/lib CC=mpicc LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}" --with-hermitian-eps
+
+sh autogen.sh --enable-shared --without-libctl CC=mpicc LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}" --with-hermitian-eps
+
+------------------------
+
+Build MEEP:
+
+sh autogen.sh --enable-shared --with-libctl --with-mpi --enable-maintainer-mode PYTHON=python3 LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
+
+
+sh autogen.sh --enable-shared --with-libctl --with-mpi --enable-maintainer-mode CC=mpicc CXX=mpic++ PYTHON=python3 LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
+
+
+sh autogen.sh --enable-shared --with-libctl --with-blas=/usr/local/lib --with-lapack=/usr/local/lib --with-mpi --enable-maintainer-mode CC=mpicc CXX=mpic++ PYTHON=python3 LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
+
+sh autogen.sh --enable-shared --with-libctl --with-blas=/usr/local/lib --with-lapack=/usr/local/lib --enable-maintainer-mode CC=mpicc CXX=mpic++ PYTHON=python3 LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
+
+sh autogen.sh --enable-shared --with-libctl --enable-maintainer-mode CC=mpicc CXX=mpic++ PYTHON=python3 LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
+
+
+
+
+
+
+
+
+sh autogen.sh --enable-shared --with-libctl --enable-maintainer-mode CC=mpicc CXX=mpic++ LDFLAGS="${MY_LDFLAGS}" CPPFLAGS="${MY_CPPFLAGS}"
